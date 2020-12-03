@@ -29,7 +29,7 @@ namespace Models.EF
         [StringLength(500)]
         public string Description { get; set; }
 
-        public DateTime? CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         [StringLength(50)]
         public string CreateBy { get; set; }
@@ -41,6 +41,6 @@ namespace Models.EF
 
         public int DisplayOrder { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
     }
 }

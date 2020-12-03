@@ -92,7 +92,7 @@ namespace Models.Admin.DAO
             var model = db.Menus.Where(x => x.MenuTypeID == menuType).OrderByDescending(x => x.DisplayOrder).FirstOrDefault();
             if (model != null)
             {
-                return model.DisplayOrder; ;
+                return model.DisplayOrder;
             }
             else return 0;
         }

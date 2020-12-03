@@ -100,7 +100,7 @@ namespace Models.Admin.DAO
 
         public int GetMaxDislayOrder()
         {
-            var model = db.ProductCategories.Where(x => x.ParentID == null).OrderByDescending(x => x.DisplayOrder).FirstOrDefault();
+            var model = db.ProductCategories.Where(x => x.ParentID == 0).OrderByDescending(x => x.DisplayOrder).FirstOrDefault();
             if (model != null)
             {
                 return model.DisplayOrder; ;

@@ -73,6 +73,7 @@
     <Compile Include="DAO\Admin\UserDao.cs" />
     <Compile Include="DAO\Admin\UserGroupDao.cs" />
     <Compile Include="DAO\Admin\VisitorDao.cs" />
+    <Compile Include="DAO\Client\CompanyInfoDao.cs" />
     <Compile Include="EF\About.cs" />
     <Compile Include="EF\Blog.cs" />
     <Compile Include="EF\BlogCategory.cs" />
@@ -112,9 +113,7 @@
     <Compile Include="ViewModels\RegisterModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAO\Client\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

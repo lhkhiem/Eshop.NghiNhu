@@ -21,17 +21,17 @@ namespace Models.EF
         [StringLength(50)]
         public string Tax { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal? Phone { get; set; }
+        [StringLength(15)]
+        public string Phone { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal? Phone2 { get; set; }
+        [StringLength(15)]
+        public string Phone2 { get; set; }
 
-        [StringLength(10)]
+        [StringLength(15)]
         public string Phone3 { get; set; }
 
         [StringLength(50)]
-        public string Email1 { get; set; }
+        public string Email { get; set; }
 
         [StringLength(50)]
         public string Email2 { get; set; }

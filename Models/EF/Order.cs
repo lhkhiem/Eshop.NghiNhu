@@ -31,6 +31,6 @@ namespace Models.EF
         [StringLength(50)]
         public string ShipEmail { get; set; }
 
-        public int? Status { get; set; }
+        public int Status { get; set; }
     }
 }

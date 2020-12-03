@@ -56,18 +56,6 @@ namespace Models.EF
                 .Property(e => e.TagID)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<CompanyInfo>()
-                .Property(e => e.Phone)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<CompanyInfo>()
-                .Property(e => e.Phone2)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<CompanyInfo>()
-                .Property(e => e.Phone3)
-                .IsFixedLength();
-
             modelBuilder.Entity<Credential>()
                 .Property(e => e.UserGroupID)
                 .IsUnicode(false);

@@ -68,7 +68,7 @@ namespace Models.EF
 
         public bool? ViewCount { get; set; }
 
-        public long BlogCategoryID { get; set; }
+        public long ProductCategoryID { get; set; }
 
         [StringLength(500)]
         public string Tag { get; set; }
