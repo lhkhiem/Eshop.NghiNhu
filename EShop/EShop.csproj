@@ -1584,6 +1584,8 @@
     <Content Include="Contents\Client\lib\jquery.lazyload\jquery.lazyload.min.js" />
     <Content Include="Contents\Client\lib\jquery\jquery.min.js" />
     <Content Include="Contents\Client\popup\quickView.html" />
+    <Content Include="Contents\Client\resource\logo-nghi-nhu.png" />
+    <Content Include="Contents\Client\resource\nghinhu-favicon.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -1599,7 +1601,6 @@
     <Folder Include="Contents\Client\popup\assets\images\demos\demo-6\products\" />
     <Folder Include="Contents\Client\popup\assets\images\popup\quickView\" />
     <Folder Include="Contents\Client\popup\popup\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contents\Client\assets\fonts\flaming\flaming-webfont.woff" />
@@ -1618,7 +1619,14 @@
     <Content Include="Contents\Client\assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.woff" />
     <Content Include="Contents\Client\assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.woff2" />
     <None Include="packages.config" />
+    <Content Include="Views\Home\Index-full.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_MobileMenu.cshtml" />
+    <Content Include="Views\Shared\_SigninRegister.cshtml" />
+    <Content Include="Views\Shared\_PopupNewsLetter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

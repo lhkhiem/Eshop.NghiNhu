@@ -31,11 +31,14 @@ namespace Models.Admin.DAO
         {
             var model = db.Slides.Find(entity.ID);
             model.Name = entity.Name;
-            model.Title = entity.Title;
-            model.SeoTitle = entity.SeoTitle;
+            model.Caption1 = entity.Caption1;
+            model.Caption2 = entity.Caption2;
+            model.Caption3 = entity.Caption3;
+            model.Caption4 = entity.Caption4;
+            model.Caption5 = entity.Caption5;
+            model.Caption6 = entity.Caption6;
             model.Image = entity.Image;
             model.Link = entity.Link;
-            model.Description = entity.Description;
             model.ModifiedBy = entity.ModifiedBy;
             model.ModifiedDate = entity.ModifiedDate;
 
@@ -60,8 +63,8 @@ namespace Models.Admin.DAO
         {
             try
             {
-                var menutype = db.Slides.Find(id);
-                db.Slides.Remove(menutype);
+                var slide = db.Slides.Find(id);
+                db.Slides.Remove(slide);
                 db.SaveChanges();
                 return true;
             }

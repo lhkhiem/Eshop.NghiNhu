@@ -18,16 +18,25 @@ namespace Models.EF
         public string Image { get; set; }
 
         [StringLength(500)]
-        public string Title { get; set; }
+        public string Caption1 { get; set; }
 
         [StringLength(500)]
-        public string SeoTitle { get; set; }
+        public string Caption2 { get; set; }
+
+        [StringLength(500)]
+        public string Caption3 { get; set; }
+
+        [StringLength(500)]
+        public string Caption4 { get; set; }
+
+        [StringLength(500)]
+        public string Caption5 { get; set; }
+
+        [StringLength(500)]
+        public string Caption6 { get; set; }
 
         [StringLength(250)]
         public string Link { get; set; }
-
-        [StringLength(500)]
-        public string Description { get; set; }
 
         public DateTime CreateDate { get; set; }
 
