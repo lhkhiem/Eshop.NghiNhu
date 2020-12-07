@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1598,6 +1599,8 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Contents\Client\popup\assets\images\demos\demo-6\products\" />
     <Folder Include="Contents\Client\popup\assets\images\popup\quickView\" />
     <Folder Include="Contents\Client\popup\popup\" />
@@ -1618,6 +1621,7 @@
     <Content Include="Contents\Client\assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.ttf" />
     <Content Include="Contents\Client\assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.woff" />
     <Content Include="Contents\Client\assets\vendor\line-awesome\line-awesome\line-awesome\fonts\line-awesomeeb4f.woff2" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index-full.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
