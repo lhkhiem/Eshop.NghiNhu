@@ -112,9 +112,9 @@ namespace Models.Admin.DAO
             return db.Users.Count(x => x.Email == email) > 0;
         }
 
-        public User GetUserExist(string userName)
+        public User GetUserExist(string email)
         {
-            return db.Users.SingleOrDefault(x => x.UserName == userName);
+            return db.Users.SingleOrDefault(x => x.Email == email);
         }
 
         public UserViewModel GetDetailById(long id)
@@ -149,9 +149,9 @@ namespace Models.Admin.DAO
             return user;
         }
 
-        public List<string> GetListCredential(string userName)
+        public List<string> GetListCredential(string email)
         {
-            var user = db.Users.Single(x => x.UserName == userName);
+            var user = db.Users.Single(x => x.Email == email);
             var data = (from a in db.Credentials
                         join b in db.UserGroups on a.UserGroupID equals b.ID
                         join c in db.Roles on a.RoleID equals c.ID
@@ -166,54 +166,6 @@ namespace Models.Admin.DAO
                             UserGroupID = x.UserGroupID
                         });
             return data.Select(x => x.RoleID).ToList();
-        }
-
-        public int Login(string userName, string passWord, bool isLoginAdmin = false)
-        {
-            var result = db.Users.SingleOrDefault(x => x.UserName == userName);
-
-            if (result == null)
-            {
-                return 0;//không tìm thấy user
-            }
-            else
-            {//tim thay user
-                if (isLoginAdmin == true)
-                {
-                    if (result.UserGroupID == Constants.ADMIN_GROUP || result.UserGroupID == Constants.MOD_GROUP)
-                    {
-                        if (result.Status == false)
-                        {
-                            return -1;
-                        }
-                        else
-                        {
-                            if (result.Password == passWord)
-                                return 1;
-                            else
-                                return -2;
-                        }
-                    }
-                    else
-                    {
-                        return -3;
-                    }
-                }
-                else
-                {
-                    if (result.Status == false)
-                    {
-                        return -1;
-                    }
-                    else
-                    {
-                        if (result.Password == passWord)
-                            return 1;
-                        else
-                            return -2;
-                    }
-                }
-            }
         }
 
         public int LoginByEmail(string email, string passWord, bool isLoginAdmin = false)

@@ -5,12 +5,12 @@ namespace Models.ViewModels
     public class LoginViewModel
     {
         [Key]
-        [Display(Name = "Tên đăng nhập(*)")]
-        [Required(ErrorMessage = "Bạn phải nhập tài khoản")]
-        public string UserName { get; set; }
+        [Display(Name = "Email(*)")]
+        [Required(ErrorMessage = "Nhập email ")]
+        public string Email { get; set; }
 
         [Display(Name = "Mật khẩu(*)")]
-        [Required(ErrorMessage = "Bạn phải nhập mật khẩu")]
+        [Required(ErrorMessage = "Nhập mật khẩu")]
         public string Password { get; set; }
     }
 }
