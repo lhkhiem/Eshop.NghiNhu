@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 $("[data-checkboxes]").each(function () {
     var me = $(this),
@@ -49,10 +49,31 @@ $('#tableExport').DataTable({
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
 });
-var table=$('#unitTable').DataTable({
-    'dom': 'Rfrtip',
-    fixedColumns: {
-        leftColumns: 1
+//Custom datatable 
+$('#table').DataTable({
+    'dom': 'flrtip',
+    "order": [],
+    'columnDefs': [
+        {
+        'targets': [0], // column index (start from 0)
+        'orderable': false, // set orderable false for selected columns
+        }
+    ],
+    //Cấu hình cho ngôn ngữ tiếng việt với Bootstrap icon
+    "language": {
+        "sLengthMenu": "Hiển thị _MENU_ dòng mỗi trang",
+        "oPaginate": {
+            "sFirst": "",
+            "sLast": "",
+            "sNext": "",
+            "sPrevious": ""
+        },
+        "sEmptyTable": "Không có dữ liệu",
+        "sSearch": "Tìm kiếm:",
+        "sZeroRecords": "Không có dữ liệu",
+        "sInfo": "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ dòng được tìm thấy",
+        "sInfoEmpty": "Không tìm thấy",
+        "sInfoFiltered": " (trong tổng số _MAX_ dòng)",
+        "processing": "Đang tải dữ liệu!"
     },
-    select: true,
 });

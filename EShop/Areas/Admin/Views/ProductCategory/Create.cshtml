@@ -1,0 +1,87 @@
+﻿@model Models.EF.ProductCategory
+@{
+    ViewBag.Title = "Thêm danh mục sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h4>Thêm mới danh mục sản phẩm</h4>
+    </div>
+    @using (Html.BeginForm("Create", "ProductCategory", FormMethod.Post))
+    {
+        <div class="card-body">
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Danh mục cha(nếu có)</label>
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(x => x.ParentID, null, new
+               {
+                   @id = "sltParent",
+                   @class = "form-control-sm",
+               })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Tên danh mục</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.Name, new
+               {
+                   @id = "txtName",
+                   @type = "text",
+                   @class = "form-control form-control-sm",
+                   @placeholder = "Tên danh mục",
+                   @autofocus = true,
+                   @required = true
+               })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Url</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.MetaTitle, new
+               {
+                   @id = "txtMetaTitle",
+                   @type = "text",
+                   @class = "form-control form-control-sm",
+                   @required = true
+               })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Banner danh mục</label>
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(model => model.Image, new
+                       {
+                           @id = "txtImage",
+                           @type = "text",
+                           @class = "form-control form-control-sm",
+                           @required = true
+                       })
+                            <div class="input-group-append">
+                                <button id="btnImage" class="btn btn-primary btn-sm" type="button">Duyệt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Xem trước</label>
+
+                <div class="col-sm-9">
+                    <img id="imgCategory" width="500" height="100" />
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">Thêm</button>
+            <a href="/admin/danh-muc-san-pham" class="btn btn-sm btn-success">Danh sách</a>
+        </div>
+    }
+</div>
+@section js{
+    <script src="~/Contents/Admin/js/controller/productCategory-modify.js"></script>
+    <script src="~/Contents/Admin/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/Contents/Admin/plugins/ckfinder/ckfinder.js"></script>
+}

@@ -26,12 +26,19 @@ namespace Models.Admin.DAO
             return entity.ID;
         }
 
-        public byte Update(Unit entity)
+        public bool Update(Unit entity)
         {
-            var model = db.Units.Find(entity.ID);
-            model.Name = entity.Name;
-            db.SaveChanges();
-            return entity.ID;
+            try
+            {
+                var model = db.Units.Find(entity.ID);
+                model.Name = entity.Name;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public Unit GetByID(int id)

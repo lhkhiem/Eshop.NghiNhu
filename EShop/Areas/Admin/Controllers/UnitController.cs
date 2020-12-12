@@ -1,12 +1,7 @@
 ﻿using Common;
 using Models.Admin.DAO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using System.Web.UI.WebControls;
+using Models.EF;
 
 namespace EShop.Areas.Admin.Controllers
 {
@@ -15,8 +10,50 @@ namespace EShop.Areas.Admin.Controllers
         [HasCredential(RoleID = "UNIT_VIEW")]
         public ActionResult Index()
         {
-            @ViewBag.MenuActive = "mIndexUnit";
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Unit entity)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UnitDao().Insert(entity);
+                if (dao > 0)
+                {
+                    SetAlert("success", "Thêm mới thành công");
+                    return View();
+                }
+            }
+            else
+            {
+                SetAlert("error", "Thêm mới không thành công");
+            }
+            return View(entity);
+        }
+
+        public ActionResult Edit(byte id)
+        {
+            var res = new UnitDao().GetByID(id);
+            return View(res);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Unit entity)
+        {
+            if (ModelState.IsValid)
+            {
+                bool res = new UnitDao().Update(entity);
+                if (res) SetAlert("success", "Cập nhật thành công!");
+                else SetAlert("error", "Cập nhật không thành công!");
+            }
+            return View(entity);
         }
 
         public JsonResult LoadData()
@@ -31,25 +68,25 @@ namespace EShop.Areas.Admin.Controllers
 
         public JsonResult Delete(int id)
         {
-            byte status = 0;
+            byte result = 0;
             var ck = new UnitDao().CheckIsUsed(id);
             if (!ck)
             {
                 var res = new UnitDao().Delete(id);
                 if (res)
                 {
-                    status = 1;//xóa
+                    result = 1;//đã xóa
                 }
                 else
                 {
-                    status = 0;//không xóa được
+                    result = 0;//không xóa được
                 }
             }
             else
-                status = 2;//đang được sử dụng
+                result = 2;//đang được sử dụng
             return Json(new
             {
-                status = status
+                status = result
             }, JsonRequestBehavior.AllowGet);
         }
     }

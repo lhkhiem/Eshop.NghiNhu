@@ -21,7 +21,7 @@ namespace Models.Admin.DAO
 
         public long Insert(BlogCategory entity)
         {
-            if (entity.ParentID == null) entity.DisplayOrder = GetMaxDislayOrder() + 1;
+            if (entity.ParentID == 0) entity.DisplayOrder = GetMaxDislayOrder() + 1;
             else entity.DisplayOrder = 0;
 
             entity.CreateDate = DateTime.Now;
@@ -59,7 +59,7 @@ namespace Models.Admin.DAO
         {
             var model = db.BlogCategories.Find(id);
 
-            if (model.ParentID != null)//không có menu con
+            if (model.ParentID != 0)//không có menu con
                 return true;
             else return false;
         }

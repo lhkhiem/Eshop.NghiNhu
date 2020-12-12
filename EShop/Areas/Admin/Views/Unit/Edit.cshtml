@@ -1,0 +1,33 @@
+﻿@model Models.EF.Unit
+@{
+    ViewBag.Title = "Cập nhật đơn vị";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h4>Cập nhật đơn vị</h4>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Unit", FormMethod.Post))
+        {
+            <div class="card-body">
+
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Tên đơn vị</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(model => model.Name, new
+                        {
+                            @type = "text",
+                            @class = "form-control form-control-sm",
+                            @placeholder = "Tên đơn vị",
+                            @autofocus = true
+                        })
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-sm">Thêm</button>
+                <a href="/admin/don-vi" class="btn btn-sm btn-success">Danh sách</a>
+            </div>
+        }
+    </div>

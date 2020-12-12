@@ -21,7 +21,7 @@ namespace Models.Admin.DAO
 
         public long Insert(ProductCategory entity)
         {
-            if (entity.ParentID == null) entity.DisplayOrder = GetMaxDislayOrder() + 1;
+            if (entity.ParentID == 0) entity.DisplayOrder = GetMaxDislayOrder() + 1;
             else entity.DisplayOrder = 0;
 
             entity.CreateDate = DateTime.Now;
@@ -30,16 +30,17 @@ namespace Models.Admin.DAO
             return entity.ID;
         }
 
-        public long Update(ProductCategory entity)
+        public bool Update(ProductCategory entity)
         {
             var model = db.ProductCategories.Find(entity.ID);
             model.Name = entity.Name;
             model.ParentID = entity.ParentID;
+            model.Image = entity.Image;
             model.ModifiedBy = entity.CreateBy;
             model.ModifiedDate = DateTime.Now;
             model.MetaTitle = entity.MetaTitle;
             db.SaveChanges();
-            return entity.ID;
+            return true;
         }
 
         public ProductCategory GetByID(long id)
@@ -57,20 +58,14 @@ namespace Models.Admin.DAO
 
         public bool HasChild(long? id)
         {
-            var model = db.ProductCategories.Find(id);
-
-            if (model.ParentID != null)//không có menu con
+            if (db.ProductCategories.FirstOrDefault(x => x.ParentID == id) != null)
                 return true;
             else return false;
         }
 
-        public bool GetChild(long id)
+        public IEnumerable<ProductCategory> GetChild(long id)
         {
-            var model = db.ProductCategories.Where(x => x.ParentID == id);
-
-            if (model.Count() > 0)
-                return true;//có có menu con
-            else return false;//không có menu con
+            return db.ProductCategories.Where(x => x.ParentID == id);
         }
 
         public bool Delete(long id)
@@ -78,8 +73,6 @@ namespace Models.Admin.DAO
             try
             {
                 var productCategory = db.ProductCategories.Find(id);
-                var listChild = db.ProductCategories.Where(x => x.ParentID == productCategory.ID);
-                db.ProductCategories.RemoveRange(listChild);
                 db.ProductCategories.Remove(productCategory);
                 db.SaveChanges();
                 return true;
@@ -108,18 +101,35 @@ namespace Models.Admin.DAO
             else return 0;
         }
 
-        public bool ChangeOrder(int id, int order)
+        public bool ChangeOrder(long id, int order)
         {
-            var menu = db.ProductCategories.Find(id);
-            var item = db.ProductCategories.Where(x => x.DisplayOrder == order).ToList();
-            if (item.Count == 0)
+            var productCategory = db.ProductCategories.Find(id);
+            var item = db.ProductCategories.FirstOrDefault(x => x.DisplayOrder == order);
+            if (productCategory.DisplayOrder != order)
             {
-                menu.DisplayOrder = order;
-                db.SaveChanges();
-                return true;
+                if (item == null)
+                {
+                    productCategory.DisplayOrder = order;
+                    db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    item.DisplayOrder = productCategory.DisplayOrder;
+                    productCategory.DisplayOrder = order;
+                    db.SaveChanges();
+                    return true;
+                }
             }
-            else
-                return false;
+            else return false;
+        }
+
+        public bool ChangeStatus(long id)
+        {
+            var productCategory = db.ProductCategories.Find(id);
+            productCategory.Status = !productCategory.Status;
+            db.SaveChanges();
+            return productCategory.Status;
         }
     }
 }

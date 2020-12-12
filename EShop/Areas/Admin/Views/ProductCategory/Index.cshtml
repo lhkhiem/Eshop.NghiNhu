@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Danh sách danh mục sản phẩm";
+    ViewBag.Menu = "product-category";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+@section css{
+    <link rel="stylesheet" href="/Contents/Admin/assets/bundles/datatables/datatables.min.css">
+    <link rel="stylesheet" href="/Contents/Admin/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+    <style type="text/css">
+        .dataTables_filter {
+            float: left !important;
+        }
+
+        .dataTables_length {
+            float: right !important;
+        }
+    </style>
+}
+<div class="loader"></div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>Danh sách danh mục sản phẩm</h4>
+                <div class="text-right">
+                    <a href="/admin/them-danh-muc-san-pham" class="btn btn-primary">Thêm</a>
+                    <button class="btn btn-danger btn-delete">Xóa</button>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center; width:20px"><input type="checkbox" id="customCheckboxAll"></th>
+                                <th>Sắp xếp</th>
+                                <th>Tên danh mục</th>
+                                <th>Ngày tạo</th>
+                                <th>Người tạo</th>
+                                <th>Kích hoạt</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                    <script id="data-template" type="x-tmpl-mustache">
+                        <tr>
+                            <td style="text-align:center">
+                                <input type="checkbox" class="check-item" data-id="{{ID}}">
+                            </td>
+                            <td style="width:100px; height:20px">
+                                <select data-id="{{ID}}" class="sltOrder">
+
+                                    <option value="{{Order}}">{{Order}}</option>
+                                    @for (int i = 1; i <= 50; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </td>
+                            <td><a href="/admin/cap-nhat-danh-muc-san-pham/{{ID}}">{{Name}}</a></td>
+                            <td>{{CreateDate}}</td>
+                            <td id="createDate">{{CreateBy}}</td>
+                            <td>{{{Status}}}</td>
+                        </tr>
+                    </script>
+                    <script id="data-template2" type="x-tmpl-mustache">
+                        <tr>
+                            <td style="text-align:center">
+                                <input type="checkbox" class="check-item" data-id="{{ID}}">
+                            </td>
+                            <td>------</td>
+                            <td><a href="/admin/cap-nhat-danh-muc-san-pham/{{ID}}">{{Name}}</a></td>
+                            <td>{{CreateDate}}</td>
+                            <td>{{CreateBy}}</td>
+                            <td>{{{Status}}}</td>
+                        </tr>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+
+    <script src="~/Contents/Admin/js/controller/productCategory-index.js"></script>
+    <script src="~/Contents/Admin/js/mustache.min.js"></script>
+    <!-- JS Libraies -->
+    <!-- Page Specific JS File -->
+    <script src="/Contents/Admin/assets/bundles/datatables/datatables.min.js"></script>
+    <script src="/Contents/Admin/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Contents/Admin/assets/bundles/datatables/export-tables/dataTables.buttons.min.js"></script>
+    <script src="/Contents/Admin/assets/bundles/datatables/export-tables/buttons.flash.min.js"></script>
+    <script src="/Contents/Admin/assets/bundles/datatables/export-tables/jszip.min.js"></script>
+    <script src="/Contents/Admin/assets/bundles/datatables/export-tables/pdfmake.min.js"></script>
+    <script src="/Contents/Admin/assets/bundles/datatables/export-tables/vfs_fonts.js"></script>
+    <script src="/Contents/Admin/assets/bundles/datatables/export-tables/buttons.print.min.js"></script>
+    <script src="/Contents/Admin/assets/js/page/datatables.js"></script>
+
+    <script type="text/javascript">
+    </script>
+}

@@ -17,6 +17,9 @@ namespace Models.EF
         public long ParentID { get; set; }
 
         [StringLength(250)]
+        public string Image { get; set; }
+
+        [StringLength(250)]
         public string MetaTitle { get; set; }
 
         public DateTime CreateDate { get; set; }
